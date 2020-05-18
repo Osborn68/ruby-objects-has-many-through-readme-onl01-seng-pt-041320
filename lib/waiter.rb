@@ -23,9 +23,12 @@ def meals
   Meal.all.select {|m| m.waiter == self}
 end
 
-def best_tipper 
-  best_tip = Meal.all.each {|m| m.tip}
-  best_tip.sort.last.customer
+def best_tipper
+  best_tipped_meal = meals.max do |meal_a, meal_b|
+    meal_a.tip <=> meal_b.tip
+  end
+ 
+  best_tipped_meal.customer
 end
 
 end
