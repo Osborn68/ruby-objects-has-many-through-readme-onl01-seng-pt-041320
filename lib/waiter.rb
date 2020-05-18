@@ -24,6 +24,7 @@ def meals
 end
 
 def best_tipper 
-  Meal.each 
+  best_tip = Meal.each {|m| m.tip}
+  best_tip.sort.last.customer
 
 end
